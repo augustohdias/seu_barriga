@@ -11,6 +11,6 @@ def send_message(message):
     return response.json()
 
 def get_updates(offset):
-    api_call = SERVER_URL.replace('<method>', 'getUpdates?allowed_updates=["message"]&offset=' + offset)
+    api_call = SERVER_URL.replace('<method>', 'getUpdates?offset=' + offset)
     response = requests.get(api_call)
     return response.json()['result'] if response.json()['ok'] else []
