@@ -12,5 +12,7 @@ def send_message(message):
 
 def get_updates(offset):
     api_call = SERVER_URL.replace('<method>', 'getUpdates?offset=' + offset)
+    print('[DEBUG] Requesting updates.')
     response = requests.get(api_call)
+    print('[DEBUG] Response ok? ' + response.json()['ok'])
     return response.json()['result'] if response.json()['ok'] else []
