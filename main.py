@@ -12,14 +12,17 @@ def main():
             self.end_headers()
             message = "Pong"
             self.wfile.write(bytes(message, "utf8"))
-
-    tasks = [bot.seu_barriga.notice_billing, bot.seu_barriga.read_updates]
+            
+    def start_http():
+        with HTTPServer(('', int(os.environ['PORT'])), handler) as server:
+            print('Starting ping...')
+            server.serve_forever()    
+            
+    tasks = [bot.seu_barriga.notice_billing, bot.seu_barriga.read_updates, start_http]
     with concurrent.futures.ThreadPoolExecutor() as executor:
         running_tasks = [executor.submit(task) for task in tasks]
     
-    with HTTPServer(('', int(os.environ['PORT'])), handler) as server:
-        print('Starting ping...')
-        server.serve_forever()    
+
 
 if __name__ == "__main__":
     main()
