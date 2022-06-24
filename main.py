@@ -1,3 +1,4 @@
+import os
 import bot.seu_barriga
 import concurrent.futures
 
@@ -16,7 +17,7 @@ def main():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         running_tasks = [executor.submit(task) for task in tasks]
     
-    with HTTPServer(('', 8000), handler) as server:
+    with HTTPServer(('', os.environ['PORT']), handler) as server:
         server.serve_forever()    
 
 if __name__ == "__main__":
