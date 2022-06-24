@@ -11,6 +11,7 @@ def read_updates():
         updates = get_updates(str(offset))
         if updates == []:
             continue
+        print('[DEBUG] Updates size: ' + len(updates) + ' // Updates: ' + updates)
         for text in [u['message']['text'] for u in updates if '@SeuBarriga' in u['message']['text']]:
             valid_commands = [c for c in COMMANDS.keys() if c in text]
             first_command = '' if len(valid_commands) == 0 else valid_commands[0]
