@@ -17,7 +17,8 @@ def main():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         running_tasks = [executor.submit(task) for task in tasks]
     
-    with HTTPServer(('', os.environ['PORT']), handler) as server:
+    with HTTPServer(('', int(os.environ['PORT'])), handler) as server:
+        print('Starting ping...')
         server.serve_forever()    
 
 if __name__ == "__main__":
