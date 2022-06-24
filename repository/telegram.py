@@ -7,6 +7,7 @@ SERVER_URL = 'https://api.telegram.org/bot<token>/<method>'.replace('<token>', B
 
 def send_message(message):
     api_call = SERVER_URL.replace('<method>', 'sendMessage?chat_id=' + CHAT_ID + '&parse_mode=Markdown&text=' + message)
+    print('[DEBUG] Sending message >' + message + '< to ' + CHAT_ID)
     response = requests.get(api_call)
     return response.json()
 
