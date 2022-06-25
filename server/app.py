@@ -23,4 +23,4 @@ class WebhookServer:
             return jsonify({'response': 'pong'})
     
     def run(self):
-        self.__app.run(host='', port=int(self.__port))
+        self.__app.run(host='0.0.0.0', port=int(self.__port))
