@@ -19,7 +19,7 @@ class SeuBarriga(BehaviourInterface):
 
     def __pix(self, message={}):
         pix = os.getenv('PIX', 'chavepixdementirinha')
-        message_id = message['message']['message_id']
+        message_id = message['message_id']
         user = message['from']['first_name']
         user_id = message['from']['id']
         
