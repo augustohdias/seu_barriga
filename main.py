@@ -14,6 +14,7 @@ if __name__ == "__main__":
     api =  TelegramAPI()
     server = create_server(api)
     tasks = [server.run, barriga.notice_billing]
+    print(os.environ['BOT_TOKEN'])
     with ThreadPoolExecutor() as executor:
         running_tasks = [executor.submit(task) for task in tasks]
         
