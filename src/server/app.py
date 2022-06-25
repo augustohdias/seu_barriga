@@ -16,8 +16,13 @@ class WebhookServer:
         @self.__app.route('/update', methods=['POST'])
         def update():
             body = request.get_json()
+            message_text = ''
+            try:
+                message_text = body['message']['text']
+            except:
+                print(body)
+                return {'ok': True, 'message': 'Nao deveria entender isso.'}
             print(body)
-            message_text = body['message']['text']
             commands = []
             if 'seubarriga' in message_text.lower():
                 commands = [c for c in message_text.lower().split(' ') if c in self.__behaviour.valid_commands()]
