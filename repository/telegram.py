@@ -1,19 +1,17 @@
-import os
-import requests
+from encodings import utf_8, utf_8_sig
+import os, requests
 
-BOT_TOKEN = os.environ['BOT_TOKEN']
-CHAT_ID = os.environ['CHAT_ID']
-SERVER_URL = 'https://api.telegram.org/bot<token>/<method>'.replace('<token>', BOT_TOKEN)
-
-def send_message(message):
-    api_call = SERVER_URL.replace('<method>', 'sendMessage?chat_id=' + CHAT_ID + '&parse_mode=Markdown&text=' + message)
-    print('[DEBUG] Sending message >' + message + '< to ' + CHAT_ID)
-    response = requests.get(api_call)
-    return response.json()
-
-def get_updates(offset):
-    api_call = SERVER_URL.replace('<method>', 'getUpdates?offset=' + offset)
-    print('[DEBUG] Requesting updates.')
-    response = requests.get(api_call)
-    print('[DEBUG] Response ok? ' + response.json()['ok'])
-    return response.json()['result'] if response.json()['ok'] else []
+class TelegramAPI():
+    __SERVER_URL = 'https://api.telegram.org/'
+    __chat_id = ''
+    __bot_token = ''
+    
+    def __init__(self):
+        self.__chat_id = os.getenv('CHAT_ID', '')
+        self.__bot_token = os.getenv('BOT_TOKEN', '')
+    
+    def send_message(self, message):
+        send_message_url = ''.join([self.__SERVER_URL, 'bot', self.__bot_token, '/sendMessage?chat_id=', self.__chat_id, '&text=', message])
+        print(send_message_url)
+        response = requests.get(send_message_url)
+        return response.json()

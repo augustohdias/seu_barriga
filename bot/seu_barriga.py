@@ -4,19 +4,19 @@ from datetime import date, datetime
 
 BILLING_DAY = 27
 
-def read_updates():
-    print('reading updates')
-    offset = -1
-    while True:
-        updates = get_updates(str(offset))
-        if updates == []:
-            continue
-        print('[DEBUG] Updates size: ' + len(updates) + ' // Updates: ' + updates)
-        for text in [u['message']['text'] for u in updates if '@SeuBarriga' in u['message']['text']]:
-            valid_commands = [c for c in COMMANDS.keys() if c in text]
-            first_command = '' if len(valid_commands) == 0 else valid_commands[0]
-            COMMANDS.get(first_command, padrao)()
-        offset = updates[-1]['update_id'] + 1
+# def read_updates():
+#     print('reading updates')
+#     offset = -1
+#     while True:
+#         updates = get_updates(str(offset))
+#         if updates == []:
+#             continue
+#         print('[DEBUG] Updates size: ' + len(updates) + ' // Updates: ' + updates)
+#         for text in [u['message']['text'] for u in updates if '@SeuBarriga' in u['message']['text']]:
+#             valid_commands = [c for c in COMMANDS.keys() if c in text]
+#             first_command = '' if len(valid_commands) == 0 else valid_commands[0]
+#             COMMANDS.get(first_command, padrao)()
+#         offset = updates[-1]['update_id'] + 1
         
 def notice_billing():
     print('waiting to notice')
