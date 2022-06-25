@@ -16,6 +16,7 @@ class WebhookServer:
         @self.__app.route('/update', methods=['POST'])
         def update():
             body = request.get_json()
+            print(body)
             message_text = body['message']['text']
             commands = []
             if 'seubarriga' in message_text.lower():
