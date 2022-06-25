@@ -3,7 +3,7 @@ import string
 from requests import request
 from flask import Flask, request, jsonify
 
-class WebhookServer:
+class SeuBarrigaApp:
     __app = None
     __behaviour = None 
     __port = 0
