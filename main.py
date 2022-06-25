@@ -1,15 +1,14 @@
-import os, queue
+import os
 import server.app as app
+from bot.seu_barriga import SeuBarriga
 from repository.telegram import TelegramAPI
-import bot.seu_barriga as barriga
 from concurrent.futures import ThreadPoolExecutor
 
-
 def create_server():
-    api =  TelegramAPI()
+    bot = SeuBarriga(27, TelegramAPI())
     port = os.getenv('PORT', '8000')
     app_name = __name__
-    return app.WebhookServer(app_name, int(port), api=api)
+    return app.WebhookServer(app_name, int(port), bot)
     
 if __name__ == "__main__":
     server = create_server()

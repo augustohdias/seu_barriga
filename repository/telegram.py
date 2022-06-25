@@ -1,6 +1,7 @@
 import os, requests
+from chat_service import ChatServiceInterface
 
-class TelegramAPI():
+class TelegramAPI(ChatServiceInterface):
     __SERVER_URL = 'https://api.telegram.org/'
     __chat_id = ''
     __bot_token = ''
@@ -14,3 +15,6 @@ class TelegramAPI():
         print(send_message_url)
         response = requests.get(send_message_url)
         return response.json()
+    
+    def send_private_message(self, message, user_id):
+        return super().send_private_message(message, user_id)
