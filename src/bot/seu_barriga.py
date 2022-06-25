@@ -18,21 +18,34 @@ class SeuBarriga(BehaviourInterface):
         return self.__api.send_message(f'Vou cobrar o aluguel em {days_to_payment} dias ({billing_date}).')
 
     def __pix(self, message={}):
-        return self.__api.send_private_message('', 0)
+        pix = os.getenv('PIX', 'chavepixdementirinha')
+        user = message['from']['first_name']
+        user_id = message['from']['id']
+        
+        pix_msg = self.__read_md_template('pix', params={'user': user, 'pix': pix})
+        print(pix_msg)
+
+        return self.__api.send_private_message(pix_msg, user_id)
 
     def __padrao(self, message={}):
         return self.__api.send_message('**Pague o aluguel!**')
 
     def __ajuda(self, message={}):
-        ajuda = open(f'{self.__dir_path}/messages/ajuda.md', 'r').read()
-        return self.__api.send_message(ajuda)
+        ajuda_msg = self.__read_md_template('ajuda')
+        return self.__api.send_message(ajuda_msg)
+
+    def __read_md_template(self, template_name, params={}):
+        template_str = open(f'{self.__dir_path}/messages/{template_name}.md', 'r').read()
+        for param in params:
+            template_str = template_str.replace(f'<{param}>', params[param])
+        return template_str
 
     __COMMANDS = {
         'aluguel': __aluguel,
         'pix': __pix,
         'ajuda': __ajuda
     }
-    
+
     def valid_commands(self):
         return self.__COMMANDS.keys()
     

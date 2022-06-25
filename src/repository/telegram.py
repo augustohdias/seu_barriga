@@ -11,10 +11,11 @@ class TelegramAPI(ChatServiceInterface):
         self.__bot_token = os.getenv('BOT_TOKEN', '')
     
     def send_message(self, message):
-        send_message_url = ''.join([self.__SERVER_URL, 'bot', self.__bot_token, '/sendMessage?chat_id=', self.__chat_id, '&parse_mode=markdown&text=', message])
+        send_message_url = f'{self.__SERVER_URL}bot{self.__bot_token}/sendMessage?chat_id={self.__chat_id}&parse_mode=markdown&text={message}'
         print(send_message_url)
-        response = requests.get(send_message_url)
-        return response.json()
+        return requests.get(send_message_url).json()
     
     def send_private_message(self, message, user_id):
-        return super().send_private_message(message, user_id)
+        send_private_message_url = f'{self.__SERVER_URL}bot{self.__bot_token}/sendMessage?chat_id={user_id}&parse_mode=markdown&text={message}'
+        print(send_private_message_url)
+        return requests.get(send_private_message_url).json()
