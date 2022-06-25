@@ -1,7 +1,9 @@
+import os
 from datetime import date
 from bot.beahviour import BehaviourInterface
 
 class SeuBarriga(BehaviourInterface):
+    __dir_path = os.path.dirname(os.path.realpath(__file__))
     __billing_day = 27
     __api = None
     
@@ -22,7 +24,7 @@ class SeuBarriga(BehaviourInterface):
         return self.__api.send_message('**Pague o aluguel!**')
 
     def __ajuda(self, message={}):
-        ajuda = open('./bot/messages/ajuda.md', 'r').read()
+        ajuda = open(f'{self.__dir_path}/messages/ajuda.md', 'r').read()
         return self.__api.send_message(ajuda)
 
     __COMMANDS = {
