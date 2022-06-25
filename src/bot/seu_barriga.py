@@ -22,14 +22,7 @@ class SeuBarriga(BehaviourInterface):
         return self.__api.send_message('**Pague o aluguel!**')
 
     def __ajuda(self, message={}):
-        return self.__api.send_message('''*Seu Barriga: Pague o aluguel!*
-                                       
-                                       *COMANDOS*
-                                       
-                                       - aluguel: Falo o dia que vou cobrar o aluguel
-                                       - pix: (ñ ta pronto) Te mando a chave pix para você fazer o pagamento na DM
-                                       - ajuda: Mostra esse menu
-                                       ''')
+        return self.__api.send_message('''*Seu Barriga: Pague o aluguel!*\n\n*COMANDOS*\n\n- aluguel: Falo o dia que vou cobrar o aluguel\n- pix: (ñ ta pronto) Te mando a chave pix para você fazer o pagamento na DM\n- ajuda: Mostra esse menu''')
 
     __COMMANDS = {
         'aluguel': __aluguel,
