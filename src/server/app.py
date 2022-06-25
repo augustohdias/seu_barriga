@@ -20,7 +20,7 @@ class WebhookServer:
             body = request.get_json()
             message_text = ''
             try:
-                message_text = reduce((lambda a, b: a + b), [char for char in body['message']['text'] if char not in string.punctuation], '')
+                message_text = reduce((lambda a, b: a + (b if b not in string.punctuation else ' ')), body['message']['text'], '')
             except:
                 print(body)
                 return {'ok': True, 'message': 'Nao deveria entender isso.'}
