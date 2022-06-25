@@ -19,12 +19,14 @@ class SeuBarriga(BehaviourInterface):
 
     def __pix(self, message={}):
         pix = os.getenv('PIX', 'chavepixdementirinha')
+        message_id = message['message']['message_id']
         user = message['from']['first_name']
         user_id = message['from']['id']
         
         pix_msg = self.__read_md_template('pix', params={'user': user, 'pix': pix})
         print(pix_msg)
 
+        self.__api.reply_message('Vê a DM.', message_id)
         return self.__api.send_private_message(pix_msg, user_id)
 
     def __padrao(self, message={}):

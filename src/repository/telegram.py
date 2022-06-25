@@ -19,3 +19,8 @@ class TelegramAPI(ChatServiceInterface):
         send_private_message_url = f'{self.__SERVER_URL}bot{self.__bot_token}/sendMessage?chat_id={user_id}&parse_mode=markdown&text={message}'
         print(send_private_message_url)
         return requests.get(send_private_message_url).json()
+
+    def reply_message(self, message, reply_to_id):
+        send_message_url = f'{self.__SERVER_URL}bot{self.__bot_token}/sendMessage?chat_id={self.__chat_id}&parse_mode=markdown&text={message}&reply_to_message_id={reply_to_id}'
+        print(send_message_url)
+        return requests.get(send_message_url).json()
