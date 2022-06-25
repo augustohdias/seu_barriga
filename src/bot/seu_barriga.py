@@ -41,6 +41,6 @@ class SeuBarriga(BehaviourInterface):
         return self.__COMMANDS.keys()
     
     def perform(self, command, message={}):
-        if command in self.valid_commands:
+        if command in self.valid_commands():
             return ('ok', self.__COMMANDS.get(command, self.__padrao)(message))
         return ('error', None)
