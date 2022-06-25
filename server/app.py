@@ -1,5 +1,4 @@
 from requests import request
-from repository.telegram import TelegramAPI
 from flask import Flask, request, jsonify
 
 class WebhookServer:
@@ -15,9 +14,9 @@ class WebhookServer:
         @self.__app.route('/update', methods=['POST'])
         def update():
             data = request.get_json()
-            print(data)
+            print(str(data))
             self.__api.send_message('Teste')
-            return jsonify({'response': 'message sent'})
+            return data
         
         @self.__app.route('/ping', methods=['GET'])
         def ping():
