@@ -1,5 +1,5 @@
 import os, requests
-from chat_service import ChatServiceInterface
+from repository.chat_service import ChatServiceInterface
 
 class TelegramAPI(ChatServiceInterface):
     __SERVER_URL = 'https://api.telegram.org/'
