@@ -5,4 +5,4 @@
 #   Preencha com as variáveis de teste e execute este script
 
 source ./config/env.dev
-python3 ./main.py
+python3 ./src/main.py
