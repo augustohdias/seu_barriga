@@ -15,7 +15,7 @@ class WebhookServer:
         def update():
             data = request.get_json()
             print(str(data))
-            self.__api.send_message('Teste')
+            # self.__api.send_message('Teste')
             return data
         
         @self.__app.route('/ping', methods=['GET'])
