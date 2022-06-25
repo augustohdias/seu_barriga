@@ -1,3 +1,5 @@
+from functools import reduce
+import string
 from requests import request
 from flask import Flask, request, jsonify
 
@@ -18,7 +20,7 @@ class WebhookServer:
             body = request.get_json()
             message_text = ''
             try:
-                message_text = body['message']['text']
+                message_text = reduce((lambda a, b: a + b), [char for char in body['message']['text'] if char not in string.punctuation], '')
             except:
                 print(body)
                 return {'ok': True, 'message': 'Nao deveria entender isso.'}
