@@ -14,7 +14,7 @@ if __name__ == "__main__":
     api =  TelegramAPI()
     server = create_server(api)
     tasks = [server.run]
-    print(os.environ['BOT_TOKEN'])
+    print(os.environ['PORT'])
     with ThreadPoolExecutor() as executor:
         running_tasks = [executor.submit(task) for task in tasks]
         
