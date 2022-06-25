@@ -1,10 +1,9 @@
 from datetime import date
 from bot.beahviour import BehaviourInterface
-from repository.chat_service import ChatServiceInterface
 
 class SeuBarriga(BehaviourInterface):
     __billing_day = 27
-    __api = ChatServiceInterface()
+    __api = None
     
     def __init__(self, billing_day, api):
         self.__billing_day = billing_day

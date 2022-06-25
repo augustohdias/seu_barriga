@@ -1,10 +1,9 @@
 from requests import request
 from flask import Flask, request, jsonify
-from bot.beahviour import BehaviourInterface
 
 class WebhookServer:
     __app = None
-    __behaviour = BehaviourInterface() 
+    __behaviour = None 
     __port = 0
     
     def __init__(self, name, port, behaviour):
