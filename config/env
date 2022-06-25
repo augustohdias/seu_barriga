@@ -1,3 +1,10 @@
+# Como executar a aplicação localmente:
+#
+# - Copie este arquivo;
+# - Renomeie a cópia para 'env.dev';
+# - Preencha as variáveis de ambiente;
+# - Execute o script 'run.sh'
+
 export PORT=''
 export BOT_TOKEN=''
 export CHAT_ID=''

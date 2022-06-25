@@ -1,4 +1,3 @@
-from encodings import utf_8, utf_8_sig
 import os, requests
 
 class TelegramAPI():

@@ -7,15 +7,16 @@ class WebhookServer:
     __api = None 
     __port = 0
     
-    def __init__(self, name, port):
+    def __init__(self, name, port, api):
         self.__app = Flask(name)
-        self.__api = TelegramAPI()
+        self.__api = api
         self.__port = port
         
         @self.__app.route('/update', methods=['POST'])
         def update():
             data = request.get_json()
-            print(data)
+            
+
             self.__api.send_message('Teste')
             return jsonify({'response': 'message sent'})
         

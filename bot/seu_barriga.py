@@ -25,17 +25,17 @@ def notice_billing():
         days_to_payment = BILLING_DAY - int(today.strftime('%d'))
         hour = datetime.now().hour
         if days_to_payment < 5 and hour >= 19:
-            send_message("Lembrem-se de pagar o aluguel!")
+            "Lembrem-se de pagar o aluguel!"
         time.sleep(5 * 3600)
 
 def aluguel():
     today = date.today()
     days_to_payment = str(BILLING_DAY - int(today.strftime('%d')))
     billing_date = str(BILLING_DAY) + today.strftime('/%m/%Y')
-    send_message("Vou cobrar o aluguel em " + days_to_payment + " dias (" + billing_date + ").")    
+    "Vou cobrar o aluguel em " + days_to_payment + " dias (" + billing_date + ")."
 
 def padrao():
-    send_message('**Pague o aluguel!**')
+    '**Pague o aluguel!**'
 
 COMMANDS = {
     'aluguel': aluguel,
