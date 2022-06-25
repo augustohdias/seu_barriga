@@ -5,16 +5,15 @@ import bot.seu_barriga as barriga
 from concurrent.futures import ThreadPoolExecutor
 
 
-def create_server(api):
-    app_name = __name__
+def create_server():
+    api =  TelegramAPI()
     port = os.getenv('PORT', '8000')
+    app_name = __name__
     return app.WebhookServer(app_name, int(port), api=api)
     
 if __name__ == "__main__":
-    api =  TelegramAPI()
-    server = create_server(api)
+    server = create_server()
     tasks = [server.run]
-    print(os.environ['PORT'])
     with ThreadPoolExecutor() as executor:
         running_tasks = [executor.submit(task) for task in tasks]
         
