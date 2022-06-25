@@ -1,4 +1,4 @@
-*Pague o aluguel!*
+*Paguem o aluguel!*
 
 Cobro as cotizações todo mês.
 
