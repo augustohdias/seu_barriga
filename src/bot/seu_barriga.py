@@ -22,7 +22,7 @@ class SeuBarriga:
         user = message['from']['username']
         user_id = message['from']['id']
         
-        pix_msg = self.__read_md_template('pix', params={'user': user, 'pix': pix, 'user_id': user_id})
+        pix_msg = self.__read_md_template('pix', params={'user': user, 'pix': pix, 'user_id': str(user_id)})
         
         return self.__api.reply_message(pix_msg, message_id)
 
