@@ -1,5 +1,6 @@
-import os
-from datetime import date
+import os, time
+from bot.markdown import read_md_template
+from datetime import date, datetime
 
 class SeuBarriga:
     __dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -9,6 +10,14 @@ class SeuBarriga:
     def __init__(self, billing_day, api):
         self.__billing_day = billing_day
         self.__api = api
+    
+    def task(self):
+        cobranca_msg = read_md_template(self.__dir_path, 'cobranca')
+        hours = lambda a: a * 3600
+        while True:
+            if datetime.now().day - self.__billing_day <= 3 and datetime.now().hour >= 10:
+                self.__api.send_message(cobranca_msg)
+                time.sleep(hours(23))
         
     def __aluguel(self, message={}):
         today = date.today()
@@ -22,7 +31,7 @@ class SeuBarriga:
         user = message['from']['username']
         user_id = message['from']['id']
         
-        pix_msg = self.__read_md_template('pix', params={'user': user, 'pix': pix, 'user_id': str(user_id)})
+        pix_msg = read_md_template(self.__dir_path, 'pix', params={'user': user, 'pix': pix, 'user_id': str(user_id)})
         
         return self.__api.reply_message(pix_msg, message_id)
 
@@ -30,14 +39,8 @@ class SeuBarriga:
         return self.__api.send_message('**Pague o aluguel!**')
 
     def __ajuda(self, message={}):
-        ajuda_msg = self.__read_md_template('ajuda')
+        ajuda_msg = read_md_template(self.__dir_path, 'ajuda')
         return self.__api.send_message(ajuda_msg)
-
-    def __read_md_template(self, template_name, params={}):
-        template_str = open(f'{self.__dir_path}/messages/{template_name}.md', 'r').read()
-        for param in params:
-            template_str = template_str.replace(f'<{param}>', params[param])
-        return template_str
 
     __COMMANDS = {
         'aluguel': __aluguel,
