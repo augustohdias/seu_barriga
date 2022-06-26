@@ -12,11 +12,12 @@ class SeuBarriga:
         self.__api = api
     
     def task(self):
+        pix = os.getenv('PIX', 'chavepixdementirinha')
         cobranca_msg = read_md_template(self.__dir_path, 'cobranca')
         hours = lambda a: a * 3600
         while True:
             if datetime.now().day - self.__billing_day <= 3 and datetime.now().hour >= 10:
-                self.__api.send_message(cobranca_msg)
+                self.__api.send_message(cobranca_msg, params={'pix': pix})
                 time.sleep(hours(23))
         
     def __aluguel(self, message={}):
