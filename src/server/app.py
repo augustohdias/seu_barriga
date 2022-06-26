@@ -22,7 +22,6 @@ class SeuBarrigaApp:
             try:
                 message_text = reduce((lambda a, b: a + (b if b not in string.punctuation else ' ')), body['message']['text'], '')
             except:
-                print(body)
                 return {'ok': True, 'message': 'Nao deveria entender isso.'}
             print(body)
             commands = []
