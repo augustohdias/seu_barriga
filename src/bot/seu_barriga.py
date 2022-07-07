@@ -14,11 +14,11 @@ class SeuBarriga:
     def task(self):
         pix = os.getenv('PIX', 'chavepixdementirinha')
         cobranca_msg = read_md_template(self.__dir_path, 'cobranca', params={'pix': pix})
-        hours = lambda a: a * 3600
+        day = 23 * 3600
         while True:
-            if datetime.now().day - self.__billing_day <= 3 and datetime.now().hour >= 10:
+            if datetime.now().day == 27 and datetime.now().hour == 10:
                 self.__api.send_message(cobranca_msg)
-                time.sleep(hours(23))
+                time.sleep(day)
         
     def __aluguel(self, message={}):
         today = date.today()
